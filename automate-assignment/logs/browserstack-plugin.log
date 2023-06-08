@@ -1,0 +1,25 @@
+17:36:08.315 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackEnabled
+17:36:08.315 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackEnabled : true P/automate-assignment
+17:36:08.316 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackDisabled
+17:36:08.316 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackDisabled : false P/automate-assignment
+17:36:10.440 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackEnabled
+17:36:10.441 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackEnabled : true P/automate-assignment
+17:36:10.442 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackDisabled
+17:36:10.442 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackDisabled : false P/automate-assignment
+17:36:12.180 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackEnabled
+17:36:12.181 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackEnabled : true P/automate-assignment
+17:36:12.181 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackDisabled
+17:36:12.182 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackDisabled : false P/automate-assignment
+17:37:12.513 [main] INFO  c.b.launchers.LaunchMavenCommand - Executing maven archetype command - browserstack-sdk-archetype-integrate
+17:37:29.224 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackEnabled
+17:37:29.225 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackEnabled : true P/automate-assignment
+17:37:29.225 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackDisabled
+17:37:29.225 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackDisabled : false P/automate-assignment
+17:37:30.796 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackEnabled
+17:37:30.797 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackEnabled : true P/automate-assignment
+17:37:30.798 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackDisabled
+17:37:30.798 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackDisabled : false P/automate-assignment
+17:37:48.815 [Worker-24: Launching automatetestng] INFO  c.b.BrowserStackPluginActivator - The previous launch removed.
+17:38:36.052 [Worker-28: Launching automatetestng] INFO  c.b.BrowserStackPluginActivator - The previous launch removed.
+08:55:24.667 [Worker-33: Launching automatetestng] INFO  c.b.BrowserStackPluginActivator - The previous launch removed.
+09:02:36.472 [Framework stop - Equinox Container: b9c72308-89d5-4b23-a1e7-3b0c98e0c10f] INFO  c.b.BrowserStackPluginActivator - Stopping BrowserStack Plugin...
