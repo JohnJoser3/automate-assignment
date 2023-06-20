@@ -1,0 +1,105 @@
+package automateProject;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class App {
+    public static void main(String[] arg) {
+
+        final String USERNAME = "Username";
+        final String AUTOMATE_KEY = "password";
+        String hubURL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
+
+        MutableCapabilities chromeCapabilities = new MutableCapabilities();
+        chromeCapabilities.setCapability("browserName", "chrome");
+        chromeCapabilities.setCapability("browserVersion", "latest");
+
+        MutableCapabilities safariCapabilities = new MutableCapabilities();
+        safariCapabilities.setCapability("browserName", "safari");
+        safariCapabilities.setCapability("browserVersion", "latest");
+
+        MutableCapabilities ieCapabilities = new MutableCapabilities();
+        ieCapabilities.setCapability("browserName", "internet explorer");
+        ieCapabilities.setCapability("browserVersion", "latest");
+
+        MutableCapabilities edgeCapabilities = new MutableCapabilities();
+        edgeCapabilities.setCapability("browserName", "MicrosoftEdge");
+        edgeCapabilities.setCapability("browserVersion", "latest");
+
+        MutableCapabilities firefoxCapabilities = new MutableCapabilities();
+        firefoxCapabilities.setCapability("browserName", "firefox");
+        firefoxCapabilities.setCapability("browserVersion", "latest");
+
+        try {
+            WebDriver chromeDriver = new RemoteWebDriver(new URL(hubURL), chromeCapabilities);
+            WebDriver safariDriver = new RemoteWebDriver(new URL(hubURL), safariCapabilities);
+            WebDriver ieDriver = new RemoteWebDriver(new URL(hubURL), ieCapabilities);
+            WebDriver edgeDriver = new RemoteWebDriver(new URL(hubURL), edgeCapabilities);
+            WebDriver firefoxDriver = new RemoteWebDriver(new URL(hubURL), firefoxCapabilities);
+
+            // Create an array of drivers
+            WebDriver[] drivers = {chromeDriver, safariDriver, ieDriver, edgeDriver, firefoxDriver};
+
+            // Create an array of driver names for printing
+            String[] driverNames = {"Chrome", "Safari", "Internet Explorer", "Edge", "Firefox"};
+
+            // Create an array of threads for parallel execution
+            Thread[] threads = new Thread[drivers.length * 2]; // Multiply by 2 for two separate runs
+
+            // Start parallel execution for each driver
+            for (int i = 0; i < drivers.length; i++) {
+                final WebDriver driver = drivers[i];
+                final String driverName = driverNames[i];
+
+                for (int j = 0; j < 2; j++) { // Perform two separate runs
+                    final int runNumber = j + 1;
+                    threads[(i * 2) + j] = new Thread(new Runnable() {
+                        public void run() {
+                            // Test on the respective driver for each run
+                            testLogin(driver, driverName, runNumber);
+                        }
+                    });
+                    threads[(i * 2) + j].start();
+                }
+            }
+
+            // Wait for all threads to finish
+            for (Thread thread : threads) {
+                thread.join();
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+	public static void testLogin(WebDriver driver, String driverName, int runNumber) {
+        driver.get("https://www.browserstack.com/users/sign_in");
+        WebElement txtbx_username = driver.findElement(By.id("user_email_login"));
+        txtbx_username.sendKeys("testbrowserstack40@gmail.com");
+        WebElement txtbx_pwd = driver.findElement(By.id("user_password"));
+        txtbx_pwd.sendKeys("Since1988@123");
+        WebElement button_signin = driver.findElement(By.id("user_submit"));
+        button_signin.click();
+
+        String expected_URL = "https://automate.browserstack.com/dashboard/v2/getting-started";
+        String actual_URL = driver.getCurrentUrl();
+
+        if (expected_URL.equals(actual_URL)) {
+            System.out.println("Login Successful on " + driverName + " - Run " + runNumber);
+            System.out.println("Current URL: " + actual_URL);
+        } else {
+            System.out.println("Login Failed on " + driverName + " - Run " + runNumber);
+            System.out.println("Current URL: " + actual_URL);
+        }
+    }
+}
+
